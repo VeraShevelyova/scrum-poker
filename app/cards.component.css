@@ -1,0 +1,21 @@
+.card {
+	margin: 8px;
+	width: 70px;
+	height: 110px;
+	border: 2px solid #6ea6dc;
+	text-align: center;
+}
+
+.card.selected {
+	background-color: #009900;
+}
+
+ul li{
+  display: inline;
+}
+
+.bottom{
+	position: fixed; 
+	bottom: 5px;
+}
+
