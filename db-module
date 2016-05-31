@@ -1,0 +1,56 @@
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://127.0.0.1:27017/test');   
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+        console.log("success!!!")
+    });
+
+  // define model =================
+  var Card = mongoose.model('Card', {
+    id : Number,
+    text : String,
+    type : String
+  });
+
+  /*var card = new Card({id: 1, text : "0", type: "Fibonacci" })
+  card.save(function (err, card) {
+  if (err) return console.error(err);
+  console.log(card);
+  });*/
+
+/*var cards = [
+  {id: 1, text : "0", type: "Fibonacci" },
+  {id: 2, text : "1/2", type: "Fibonacci" },
+  {id: 3, text : "1", type: "Fibonacci" },
+  {id: 4, text : "2", type: "Fibonacci" },
+  {id: 5, text : "3", type: "Fibonacci" },
+  {id: 6, text : "5", type: "Fibonacci" },
+  {id: 7, text : "8", type: "Fibonacci" },
+  {id: 8, text : "13", type: "Fibonacci" },
+  {id: 9, text : "21", type: "Fibonacci" },
+  {id: 10, text : "coffe break", type: "Fibonacci" }
+]
+
+
+Card.create(cards, function (err) {
+    if (err) console.error(err);
+      else console.log(Card);
+});*/
+
+/*Card.remove({ id : 1 }, function (err) {
+    if(err) console.error("Don't want to remove anything");
+});*/
+
+
+module.exports = {
+	getCards : function(req, res) {
+    Card.find(function(err, cards) {
+    	if (err)
+        	res.send(err)
+
+    	res.json(cards);
+    	console.log(cards);
+    }
+}

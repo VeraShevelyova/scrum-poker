@@ -1,7 +1,0 @@
-<div class = 'bottom'>
-<ul class="cards">
-      <li *ngFor="let card of cards">
-        <button class="card" (click) = onVote(card) [class.selected] = 'selectedCard === card' >{{card.title}}</button> 
-      </li>
-</ul>
-</div>

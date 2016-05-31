@@ -1,0 +1,18 @@
+<div>
+   <ul class="cards">
+      <li *ngFor="let card of selectedCards">
+        <button class="card">{{ showVotess == false ? 'Voted' : card.text}}</button> 
+	  </li>
+	</ul>
+</div>
+<div>
+<button class = 'vote'(click) = showVotes1()></button>
+</div>
+<div class = 'bottom'>
+<ul class="cards">
+      <li *ngFor="let card of cards">
+        <button class="card" (click) = onVote(card) [class.selected] = 'selectedCard === card' >{{card.text}}</button> 
+</li>
+</ul>
+</div>
+<div>{{res}}</div>

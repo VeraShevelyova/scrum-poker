@@ -2,11 +2,14 @@ import {Component} from '@angular/core';
 import { CardComponent }     from './cards.component';
 import { CardService } from './card.service';
 
+//import './rxjs-operators';
+
 @Component({
     selector: 'my-app',
-    template: '<cards-container></cards-container> ',
+    templateUrl: 'app/app.component.html',
     providers: [CardService],
     directives: [CardComponent]
 })
+
 export class AppComponent { }
 
