@@ -41,7 +41,15 @@ addUserStory() {
         .subscribe(
         userStory  => this.userStories.push(userStory),
         error =>  this.errorMessage = <any>error);
+    this.closeModal();
 };
+
+deleteUserStory(userStory : UserStory){
+    this.userStoryService.deleteUserStory(userStory).subscribe(
+        res => this.res,
+        error => this.errorMessage = <any> error);
+    this.getUserStories();
+}
 
   ngOnInit() {
     this.getUserStories();

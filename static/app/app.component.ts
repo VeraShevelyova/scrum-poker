@@ -16,3 +16,11 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
 
 export class AppComponent { }
 
+@RouteConfig([
+  {
+    path: '/userStory',
+    name: 'userStory',
+    component: UserStoryComponent
+  }
+])
+

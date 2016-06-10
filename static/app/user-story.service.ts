@@ -29,9 +29,29 @@ export class UserStoryService {
                     .catch(this.handleError);
   }
 
+  updateUserStory(userStory: UserStory): Observable<UserStory> {
+    let body = JSON.stringify({userStory});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.userStoryUrl, body, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  deleteUserStory(userStory: UserStory): Observable<UserStory> {
+    let url = this.userStoryUrl + "/" + userStory.id;
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(url, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
   	let body = res.json();
-  	return body || [];
+  	return body || {};
   }
 
 

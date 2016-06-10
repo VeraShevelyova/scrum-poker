@@ -1,5 +1,5 @@
-<p>Plus icon on a button:
-	<button type="button" class="btn btn-default btn-sm" (click) = showModal() >
+<p>
+	<button type="button" class="btn btn-default btn-sm addUserStory" (click) = showModal() >
 		<span class="glyphicon glyphicon-plus"></span> Add UserStory
 	</button>
 </p>
@@ -8,6 +8,8 @@
 <ul >
       <li  *ngFor="let userStory of userStories">
         <button class = "userStory" >{{userStory.title}}</button> 
+        <a href="#"> <span class="glyphicon glyphicon-pencil" ></span> </a>
+        <a href="#" (click) = deleteUserStory(userStory)> <span class="glyphicon glyphicon-remove" ></span> </a>
 </li>
 </ul>
 </div>
