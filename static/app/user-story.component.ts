@@ -17,10 +17,11 @@ error : String;
 res : String;
 socket :  null;
 modalIsVisible = false;
-title = "";
-description = "";
 userStories : UserStory[];
-userStory: UserStory = {};
+currentUserStory: UserStory = {
+    title: "",
+    description : ""
+};
 
 
 constructor( private userStoryService: UserStoryService ) { 
@@ -34,14 +35,26 @@ getUserStories(){
 };
 
 addUserStory() {
-    this.userStory.id = 1;
-    this.userStory.title = this.title;
-    this.userStory.description = this.description;
-    this.userStoryService.addUserStory(this.userStory)
+    if(!this.currentUserStory.id){
+    this.userStoryService.addUserStory(this.currentUserStory)
         .subscribe(
         userStory  => this.userStories.push(userStory),
         error =>  this.errorMessage = <any>error);
+
+    }
+    else{
+        this.userStoryService.updateUserStory(this.currentUserStory)
+        .subscribe(
+        userStory  => this.userStories.push(userStory),
+        error =>  this.errorMessage = <any>error);
+    }
+
     this.closeModal();
+    this.getUserStories();
+    this.currentUserStory = {
+        title: "",
+        description : ""
+    };
 };
 
 deleteUserStory(userStory : UserStory){
@@ -49,6 +62,11 @@ deleteUserStory(userStory : UserStory){
         res => this.res,
         error => this.errorMessage = <any> error);
     this.getUserStories();
+};
+
+editUserStory(userStory : UserStory){
+    this.currentUserStory = userStory;
+    this.showModal();
 }
 
   ngOnInit() {

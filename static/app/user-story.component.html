@@ -8,7 +8,7 @@
 <ul >
       <li  *ngFor="let userStory of userStories">
         <button class = "userStory" >{{userStory.title}}</button> 
-        <a href="#"> <span class="glyphicon glyphicon-pencil" ></span> </a>
+        <a href="#" (click) = editUserStory(userStory)> <span class="glyphicon glyphicon-pencil" ></span> </a>
         <a href="#" (click) = deleteUserStory(userStory)> <span class="glyphicon glyphicon-remove" ></span> </a>
 </li>
 </ul>
@@ -25,19 +25,19 @@
             <div class="modal-body">
                <div class="form-group">
   					<label class= "required control-label" for="title">Title:</label>
-  					<input type="text" class="form-control" id="title" [(ngModel)]="title" required>
+  					<input type="text" value = {{currentUserStory.title}} class="form-control" id="title" [(ngModel)]="currentUserStory.title" required>
 				</div>
 				 <div [hidden]="true" class="alert alert-danger">
           			Title is required
         		</div>
 				<div class="form-group">
   					<label class= "required control-label" for="description">Description</label>
-  					<textarea class="form-control" rows="5" id="description" [(ngModel)]="description"></textarea>
+  					<textarea class="form-control" rows="5" id="description" [(ngModel)]="currentUserStory.description">{{currentUserStory.description}}</textarea>
 				</div>
             </div>
             <div class="modal-footer">
             	<div class="note"> * - required fields</div>
-                <button type="button" class="btn btn-default" [disabled]="!(title.length && description.length)" (click)=addUserStory()>Add</button>
+                <button type="button" class="btn btn-default" [disabled]="!(currentUserStory.title.length && currentUserStory.description.length)" (click)=addUserStory()>Add</button>
                 <button type="button" class="btn btn-default" (click)=closeModal()>Close</button>
             </div>
         </div>
