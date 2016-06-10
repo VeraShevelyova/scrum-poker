@@ -1,0 +1,15 @@
+.form-group .required.control-label:after {
+  content:"*";color:red;
+}
+
+.note{
+	text-align: left;
+	color: red;
+	float: left;
+}
+
+.userStory{
+	width: 150px;
+	height: 25px;
+	margin: 2px;
+}

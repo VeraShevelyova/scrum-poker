@@ -23,10 +23,14 @@ socket :  null;
 hasVoted : Boolean;
 showVotess : Boolean;
 
-constructor(private cardService: CardService, ) { 
+constructor(private cardService: CardService ) { 
     this.socket = io();
     this.socket.on('voted', function(data){
         this.appendVote(data);
+    }.bind(this));
+
+    this.socket.on('showVotes', function(data){
+        this.showVotes(data);
     }.bind(this));
     this.selectedCards = [];
     this.hasVoted = false;
@@ -50,14 +54,18 @@ getCards(){
     }
 };
 
-showVotes1(){
+showVotes(currentuserRequested){
+    if(currentuserRequested === true){
+        this.socket.emit('requestShowVotes');
+    }
+
     this.showVotess = true;
-}
+};
 
 
- appendVote(card : Card){
+appendVote(card : Card){
     this.selectedCards.push(card);
- }
+};
 
   
 }
